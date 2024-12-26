@@ -1,4 +1,4 @@
-# HTML Enhancement Tool Documentation
+# HTML Enhancement Tool
 
 ## Overview
 Tool that uses AI to automatically enhance HTML code by improving accessibility, aesthetics, responsiveness, and semantic structure.
