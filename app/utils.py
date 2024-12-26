@@ -7,13 +7,11 @@ from dataclasses import dataclass
 
 @dataclass
 class AnalysisResult:
-    """Structure for storing analysis results"""
     content: str
     status: str
     error = None
 
 def setup_logger():
-    """Configure logger for the module"""
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     return logger
@@ -21,7 +19,6 @@ def setup_logger():
 logger = setup_logger()
 
 def validate_html(html_content):
-    """Validate HTML content before processing"""
     if not html_content or not isinstance(html_content, str):
         return False
     try:
@@ -31,15 +28,6 @@ def validate_html(html_content):
         return False
 
 def chunk_html(html_content):
-    """
-    Split HTML content into processable chunks.
-    
-    Args:
-        html_content: Raw HTML string
-    
-    Returns:
-        List of HTML chunks
-    """
     try:
         soup = BeautifulSoup(html_content, 'html.parser')
         raw_text = soup.prettify()
@@ -47,7 +35,7 @@ def chunk_html(html_content):
         
         for i in range(0, len(raw_text), CHUNK_SIZE - CHUNK_OVERLAP):
             chunk = raw_text[i:i + CHUNK_SIZE]
-            if chunk.strip():  # Only add non-empty chunks
+            if chunk.strip():
                 chunks.append(chunk)
         
         return chunks
@@ -56,7 +44,6 @@ def chunk_html(html_content):
         return []
 
 def process_chunk(chunk, processor_func):
-    """Process a single chunk with given processor function"""
     try:
         result = processor_func(chunk)
         return AnalysisResult(
@@ -72,16 +59,6 @@ def process_chunk(chunk, processor_func):
         )
 
 def analyze_with_agents(html_content, selected_improvements=None):
-    """
-    Analyze HTML content using selected improvement agents.
-    
-    Args:
-        html_content: Raw HTML string
-        selected_improvements: List of improvement types to apply (e.g., ["accessibility", "aesthetics"])
-        
-    Returns:
-        Dictionary containing analysis results from selected agents
-    """
     try:
         if not validate_html(html_content):
             raise ValueError("Invalid HTML content provided")
@@ -90,7 +67,6 @@ def analyze_with_agents(html_content, selected_improvements=None):
         if not chunks:
             raise ValueError("Failed to generate valid chunks from HTML")
 
-        # Filter processors based on selected improvements
         available_processors = {
             "responsiveness": responsiveness.process_responsiveness,
             "accessibility": accessibility.process_accessibility,
@@ -105,7 +81,6 @@ def analyze_with_agents(html_content, selected_improvements=None):
 
         results = {key: [] for key in processors.keys()}
         
-        # Process chunks in parallel for each agent
         with ThreadPoolExecutor(max_workers=4) as executor:
             for processor_name, processor_func in processors.items():
                 chunk_futures = [

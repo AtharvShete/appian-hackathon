@@ -1,4 +1,3 @@
-# Common JSON structure for all improvements
 IMPROVEMENT_JSON_STRUCTURE = """{
     "improved_html": "enhanced HTML/CSS code here",
     "changes": [
@@ -13,7 +12,6 @@ IMPROVEMENT_JSON_STRUCTURE = """{
     "categories": ["relevant", "category", "tags"]
 }"""
 
-# Accessibility prompt template
 ACCESSIBILITY_PROMPT = f"""As an accessibility expert, improve the HTML code following WCAG guidelines. Output JSON with structure:
 {IMPROVEMENT_JSON_STRUCTURE}
 
@@ -41,7 +39,6 @@ Focus on:
 Original HTML:
 {{html_code}}"""
 
-# Aesthetics prompt template
 AESTHETICS_PROMPT = f"""As a web design expert, enhance the visual design following modern principles. Output JSON with structure:
 {IMPROVEMENT_JSON_STRUCTURE}
 
@@ -69,7 +66,6 @@ Focus on:
 Original HTML:
 {{html_code}}"""
 
-# Responsiveness prompt template
 RESPONSIVENESS_PROMPT = f"""As a responsive design expert, enhance the mobile compatibility. Output JSON with structure:
 {IMPROVEMENT_JSON_STRUCTURE}
 
@@ -134,5 +130,4 @@ PROMPTS = {
 }
 
 def get_prompt(prompt_type):
-    """Get prompt template by type"""
     return PROMPTS.get(prompt_type, "")

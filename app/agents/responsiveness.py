@@ -1,7 +1,6 @@
 from models.groq_integration import create_improvement_chain
 from models.prompts import get_prompt
 
-# Create the chain with JSON output
 responsiveness_chain = create_improvement_chain(get_prompt("responsiveness"))
 
 def process_responsiveness(chunk):
