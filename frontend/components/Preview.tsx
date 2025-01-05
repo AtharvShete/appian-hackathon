@@ -34,7 +34,16 @@ const Preview: React.FC<PreviewProps> = ({ html, onHtmlChange }) => {
     }
 
     return (
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col h-full">
+            
+            
+            <Card className='flex-1 overflow-auto p-2 m-2'>
+                <iframe
+                    srcDoc={html}
+                    sandbox="allow-scripts allow-same-origin"
+                    className="w-full h-full border-none"
+                />
+            </Card>
             <form onSubmit={handleSubmit} className="p-4 border-b flex items-center space-x-2">
                 <Input
                     type="text"
@@ -48,14 +57,6 @@ const Preview: React.FC<PreviewProps> = ({ html, onHtmlChange }) => {
                     {isLoading ? 'Modifying...' : 'Modify'}
                 </Button>
             </form>
-            
-            <Card className='flex-1 overflow-auto p-2 m-2'> 
-                <iframe
-                    srcDoc={html}
-                    sandbox="allow-scripts allow-same-origin"
-                    style={{ height: '100%', width: '100%', border: 'none' }}
-                />
-            </Card>
         </div>
     )
 }
