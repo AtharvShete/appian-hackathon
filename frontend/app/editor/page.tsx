@@ -44,7 +44,6 @@ export default function EditorPage() {
             </div>
             <div className="w-1/2 h-full border-l border-gray-300 flex flex-col">
                 <Preview html={html} onHtmlChange={setHtml} />
-                <Chat />
             </div>
         </div>
     )

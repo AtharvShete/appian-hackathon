@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Wand2 } from 'lucide-react'
 import { useState } from 'react'
 import { modifyHtmlWithGroq } from '@/app/actions/groq'
+import { Card } from '@/components/ui/card'
 
 interface PreviewProps {
     html: string
@@ -47,9 +48,14 @@ const Preview: React.FC<PreviewProps> = ({ html, onHtmlChange }) => {
                     {isLoading ? 'Modifying...' : 'Modify'}
                 </Button>
             </form>
-            <div className="flex-1 overflow-auto p-4">
-                <div dangerouslySetInnerHTML={{ __html: html }} />
-            </div>
+            
+            <Card className='flex-1 overflow-auto p-2 m-2'> 
+                <iframe
+                    srcDoc={html}
+                    sandbox="allow-scripts allow-same-origin"
+                    style={{ height: '100%', width: '100%', border: 'none' }}
+                />
+            </Card>
         </div>
     )
 }
