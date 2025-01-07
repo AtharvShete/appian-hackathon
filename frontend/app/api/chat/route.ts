@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 	const { messages } = await req.json();
 
 	const response = streamText({
-		model: groq("mixtral-8x7b-32768"),
+		model: groq("llama-3.1-8b-instant"),
 		messages,
 		system:
 			"You are a helpful HTML expert. Help users understand and modify their HTML code.",

@@ -126,8 +126,9 @@ PROMPTS = {
     "accessibility": ACCESSIBILITY_PROMPT,
     "aesthetics": AESTHETICS_PROMPT,
     "responsiveness": RESPONSIVENESS_PROMPT,
-    "semantics": SEMANTICS_PROMPT
+    "semantics": SEMANTICS_PROMPT,
 }
+
 
 def get_prompt(prompt_type):
     return PROMPTS.get(prompt_type, "")
