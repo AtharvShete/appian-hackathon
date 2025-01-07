@@ -6,7 +6,7 @@ import { generateText } from "ai";
 export async function modifyHtmlWithGroq(query: string, currentHtml: string) {
 	try {
 		const { text } = await generateText({
-			model: groq("mixtral-8x7b-32768"),
+			model: groq("llama-3.1-8b-instant"),
 			prompt: `Given this HTML content:
 ${currentHtml}
 
